@@ -78,8 +78,10 @@ public class FASTAReaderSuffixes extends FASTAReader {
 	 */
 	@Override
 	public List<Integer> search(byte[] pattern) {
-		// TODO
-		return null;
+		private byte[] content;
+	    private int[] suffixes;
+	    
+	    return null;
 	}
 
 	public static void main(String[] args) {
