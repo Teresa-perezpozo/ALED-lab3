@@ -209,7 +209,7 @@ public class FASTAReader {
 		List<Integer> coincidencias = new ArrayList<Integer>();
 		for (int i = 0; i < validBytes; i++) {
 			try {
-				if (compare(pattern, i)) {
+				if (compareNumErrors(pattern, i)==0||compareNumErrors(pattern, i)==1) {
 					coincidencias.add(i);
 				}
 			} catch (FASTAException e) {
