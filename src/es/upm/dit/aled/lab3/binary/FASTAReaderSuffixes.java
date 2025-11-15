@@ -1,5 +1,6 @@
 package es.upm.dit.aled.lab3.binary;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -96,23 +97,65 @@ public class FASTAReaderSuffixes extends FASTAReader {
 			//ahora me pongo a comparar pattern
 			if(pattern[index] == content[posSuffix + index]) {
 				index++;
-				if(index == pattern.length&& pattern[index] == content[index]){//coinciden los últimos datos
-					matches.add(index);//guardo la posición inicial que es index
+				if(index == pattern.length&& pattern[index-1] == content[posSuffix + index - 1]){
+					//coinciden los últimos datos, acordarse del -1, importante
+					matches.add(posSuffix);//guardo la posición inicial que es index
 					found =true;
-				}else {
-						if(pattern[index] <content[posSuffix + index]) {
-							hi = m–-;
+					posInSuffixes = m;
+				}else if(pattern[index] <content[posSuffix + index]) {
+							hi = m--;
+
 							index = 0;
-						}if(pattern[index] >content[posSuffix + index])	{
+				}else if(pattern[index] >content[posSuffix + index])	{
 							 lo = m++;
-							 index = 0
+							 index = 0;
 					}
 				}
-			}	
-		}
 			
+				//condición de terminación
+				//una vez que lo he encontrado hay que comprobar que no hay palabras idénticas arriba y abajo
+				
+				if (found) {
+					// Now we also check the previous indexes, in case there are more matches
+					int indexSubstract = 1;
+					while (true) {
+						posSuffix = suffixes[posInSuffixes - indexSubstract].suffixIndex;
+						boolean isAlsoMatch = true;
+						for (int s = 0; s < pattern.length; s++) {
+							if (pattern[s] != content[posSuffix + s]) {
+								isAlsoMatch = false;
+								break;
+							}
+						}
+						if (isAlsoMatch) {
+							matches.add(posSuffix);
+							indexSubstract++;
+						} else
+							break;
+					}
+					// Now we also check the next indexes, in case there are more matches
+					int indexAdd = 1;
+					while (true) {
+						posSuffix = suffixes[posInSuffixes + indexAdd].suffixIndex;
+						boolean isAlsoMatch = true;
+						for (int s = 0; s < pattern.length; s++) {
+							if (pattern[s] != content[posSuffix + s]) {
+								isAlsoMatch = false;
+								break;
+							}
+						}
+						if (isAlsoMatch) {
+							matches.add(posSuffix);
+							indexAdd++;
+						} else
+							break;
+					}
+				}
+		}
+				return matches;
+			}
 
-	}
+	
 
 	public static void main(String[] args) {
 		long t1 = System.nanoTime();
