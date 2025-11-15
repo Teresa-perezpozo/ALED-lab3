@@ -88,24 +88,20 @@ public class FASTAReaderSuffixes extends FASTAReader {
 		boolean found = false ;
 		int posInSuffixes=0;
 		
+		//siempre que no lo hayamos encontrado y que el hi sea mayor que el lo por mas de uno , volvemos a revaluar
 		while (!found && ((hi - lo) > 1)) {
 			m = (lo + hi) / 2;
-			posSuffix = suffixes[m].suffixIndex;//vuelvo a establecer los parametros de hi y lo
-			//siempre que hi y lo no sean el mismo , hi sea mayor que lo y no lo hayamos encontrado
-
+			posSuffix = suffixes[m].suffixIndex;//preguntar
 			
-			if (pattern[index] == content[posSuffix + index]) {
+			//ahora me pongo a comparar pattern
+			if(pattern[index] == content[posSuffix + index]) {
 				index++;
+				if(index == pattern.length) {
+					
+				}
 			}
-		if (pattern[index] == content[posSuffix + index]) {
-			index+
-		}
-		if (index == pattern.length && (pattern[index - 1] == content[posSuffix + index - 1])) {
-			matches.add(posSuffix);
-			found = true;
-			posInSuffixes = m;
-		
-	}
+			
+			
 	}
 	}
 
