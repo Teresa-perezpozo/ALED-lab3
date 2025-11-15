@@ -90,6 +90,10 @@ public class FASTAReaderSuffixes extends FASTAReader {
 			pattern[index];
 			if(pattern[index] == content[posSuffix + index]) {
 				index++;	
+				if(index == pattern.length|| ) {
+					matches.add(posSuffix);
+					found=true;
+				}
 			}
 		}
 		
