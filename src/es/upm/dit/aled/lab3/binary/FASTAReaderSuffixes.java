@@ -96,7 +96,7 @@ public class FASTAReaderSuffixes extends FASTAReader {
 			//ahora me pongo a comparar pattern
 			if(pattern[index] == content[posSuffix + index]) {
 				index++;
-				if(index == pattern.length) {
+				if(index == pattern.length&& pattern[index]==) {//coinciden los últimos datos
 					
 				}
 			}
