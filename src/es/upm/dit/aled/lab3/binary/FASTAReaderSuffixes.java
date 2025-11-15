@@ -96,13 +96,22 @@ public class FASTAReaderSuffixes extends FASTAReader {
 			//ahora me pongo a comparar pattern
 			if(pattern[index] == content[posSuffix + index]) {
 				index++;
-				if(index == pattern.length&& pattern[index]==) {//coinciden los últimos datos
-					
+				if(index == pattern.length&& pattern[index] == content[index]){//coinciden los últimos datos
+					matches.add(index);//guardo la posición inicial que es index
+					found =true;
+				}else {
+						if(pattern[index] <content[posSuffix + index]) {
+							hi = m–-;
+							index = 0;
+						}if(pattern[index] >content[posSuffix + index])	{
+							 lo = m++;
+							 index = 0;
+					}
 				}
-			}
+			}	
+		}
 			
-			
-	}
+
 	}
 
 	public static void main(String[] args) {
