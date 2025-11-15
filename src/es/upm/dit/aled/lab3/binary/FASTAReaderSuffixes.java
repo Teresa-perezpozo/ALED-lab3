@@ -105,7 +105,7 @@ public class FASTAReaderSuffixes extends FASTAReader {
 							index = 0;
 						}if(pattern[index] >content[posSuffix + index])	{
 							 lo = m++;
-							 index = 0;
+							 index = 0
 					}
 				}
 			}	
